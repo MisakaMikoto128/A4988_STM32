@@ -1,0 +1,10 @@
+/.vs/
+/Debug/
+*.vcxproj.filters
+*.vcxproj.user
+*.vcxproj
+*.YUANLIN
+/DebugConfig/
+/Objects/
+*.uvoptx
+*.uvguix.YUANLIN
