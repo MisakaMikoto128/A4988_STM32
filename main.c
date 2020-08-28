@@ -3,6 +3,7 @@
 #include "sys.h"
 #include "usart.h"
 #include "A4988.h"
+#include "42Stepper.h"
 
 /*
 ∞Ê»®À˘”–:
@@ -17,17 +18,25 @@ int main()
 	
 	initA4988();
 
-	int t = 1000;
-	setDirection(CCW);
-	setMicrostep(FULL_STEP);
+	setDirection(CW);
+	setMicrostep(SIXTEENTH_STEP);
 	
 
 	while(1)
 	{  
-		setSteppluse(100);
+		
+//		if(getRunplusestatue() ==  RUN_OVER)
+//		{
+//			rotateMinangle();
+//			if(checkangle(MINANGLE) == false)
+//			{
+//				setDirection(!DIR_A4988);
+//			}
+//		}
 		//oneStep(CW);
-		delay_ms(5000);
-		//setPluseperid(t++);
+		delay_ms(1000);
+
+		moveNmm(10);
 //			oneStep(CW);
 		
 		// Spin motor one rotation slowly

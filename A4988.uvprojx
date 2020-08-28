@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS;.\user;.\driver\inc;.\SYSTEM\delay;.\SYSTEM\usart;.\SYSTEM\sys;.\HARDWARE\SPI;.\HARDWARE\TLC2543;.\SYSTEM\timer;.\HARDWARE\A4988;.\HARDWARE\TIMER</IncludePath>
+              <IncludePath>.\CMSIS;.\user;.\driver\inc;.\SYSTEM\delay;.\SYSTEM\usart;.\SYSTEM\sys;.\HARDWARE\SPI;.\HARDWARE\TLC2543;.\SYSTEM\timer;.\HARDWARE\A4988;.\HARDWARE\TIMER;.\HARDWARE\42Stepper</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

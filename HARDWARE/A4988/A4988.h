@@ -21,8 +21,8 @@
 #define DISABLEA4988() 	ENABLE_A4988 = 1
 
 /*面对转轴观察*/
-#define CW 	1		//clockwise 顺时针
-#define CCW 0		//counter-clockwise 逆时针
+#define CW 	0		//clockwise 顺时针
+#define CCW 1		//counter-clockwise 逆时针
 
 
 /*Microstep Resolution*/
@@ -48,6 +48,7 @@ void setMicrostep(int mode);
 /*脉冲周期：ms*/
 #define DEFAULT_PLUS_PERIOD 2
 #define MIN_PLUS_PERIOD 2
+#define RUN_OVER true
 extern int pulse_period;
 //extern const int duty_cycle ;
 /*置于1ms定时器中*/
