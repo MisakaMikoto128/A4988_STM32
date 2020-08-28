@@ -1,11 +1,10 @@
 #include "A4988.h"
+#include "timer.h"
 
-/*脉冲周期：ms*/
-#define DEFAULT_PLUS_PERIOD 200
 int pulse_period = DEFAULT_PLUS_PERIOD;
 int pluse_num = 0;
 bool runpluse_over = true;
-
+const int STEPS_PER_REV = 200;
 void initA4988(void)
 {
 
@@ -17,6 +16,8 @@ void initA4988(void)
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	//推挽输出
 	GPIO_Init(GPIOA, &GPIO_InitStructure); //初始化引脚
 
+	TIM3_Int_Init(10,7200);  //1ms
+	
 	SLEEP_A4988 = 0;
 	STEP_A4988 	= 0;
 	MS1_A4988 	= 0;
@@ -29,9 +30,8 @@ void initA4988(void)
 
 void oneStep(int direction)
 {
-	setDirection(direction);
-	
-	//TODO
+	(direction == DIR_A4988) ? setDirection(direction) : 0 ;
+	setSteppluse(1);
 }
 
 
@@ -52,38 +52,32 @@ void setMicrostep(int mode)
 /*置于1ms定时器中*/
 void stepPluse()
 {
-	static bool pluseflag = 0;
-	
-	if(pluse_num-- <= 0)
-	{
-		pluse_num = 0;
-		pluseflag = false;
-		runpluse_over = true;
-	}else
-	{
-		pluseflag = true;
-	}
-	
-	
-	static int cnt = 0;
-	int halfperiod = pulse_period<<1;//除以2
-	if(pluseflag)// on pluse
-	{
-		if(cnt < halfperiod)
-		{
-			STEP_A4988 = 1;
-		}else if(cnt >= halfperiod)
-		{
-			STEP_A4988 = 0;
-		}
-		
-		if(++cnt >= pulse_period)
-		{
-			cnt = 0;
-		}
+	if(runpluse_over == false)
+	{		
+			static int cnt = 0;
+			if(cnt < pulse_period)//脉冲正半周
+			{
+				STEP_A4988 = 1;
+			}else if(cnt >= pulse_period)
+			{
+				STEP_A4988 = 0;
+				
+				if(cnt >= 2*pulse_period)//设定脉冲数量
+				{
+					cnt = 0;
+					pluse_num--;
+					if(pluse_num <= 0)
+					{
+						pluse_num = 0;
+						runpluse_over = true;
+					}
+				}
+			}
+			cnt++;
 	}
 }
 
+/*设置新的脉冲数量 返回值-当前脉冲状态 true-设置成功*/
 bool setSteppluse(int plusenum)
 {
 	if(runpluse_over)
@@ -91,8 +85,14 @@ bool setSteppluse(int plusenum)
 		pluse_num = plusenum;
 		runpluse_over = false;
 	}
+	return runpluse_over;
 }
 
+
+int setPluseperid(int pluseperid)
+{
+	return pulse_period = pluseperid;
+}
 
 inline bool getRunplusestatue()
 {

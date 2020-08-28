@@ -1,6 +1,7 @@
+#include "sys.h"
 #ifndef _A4988_H_
 #define _A4988_H_
-#include "sys.h"
+
 #include <stdbool.h>
 #define SIMPLIFICATION 
 /*引脚定义*/
@@ -25,7 +26,7 @@
 
 
 /*Microstep Resolution*/
-#define FULL_STEP				0x01
+#define FULL_STEP				0x01	//default
 #define HALF_STEP			  0x02
 #define QUARTER_STEP    0x03
 #define EIGHTH_STEP     0x04
@@ -33,7 +34,7 @@
 #define MICROSTEP(MS1,MS2,MS3) (MS1_A4988 = (MS1),MS2_A4988 = (MS2),MS3_A4988 = (MS3))
 
 // Motor steps per rotation
-const int STEPS_PER_REV = 200;
+extern const int STEPS_PER_REV;
 
 void initA4988(void);
 
@@ -45,11 +46,12 @@ void setMicrostep(int mode);
 
 
 /*脉冲周期：ms*/
-#define DEFAULT_PLUS_PERIOD 200
+#define DEFAULT_PLUS_PERIOD 2
 extern int pulse_period;
 //extern const int duty_cycle ;
 /*置于1ms定时器中*/
 void stepPluse();
 bool getRunplusestatue();
 bool setSteppluse(int plusenum);
+int setPluseperid(int pluseperid);
 #endif

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS;.\user;.\driver\inc;.\SYSTEM\delay;.\SYSTEM\usart;.\SYSTEM\sys;.\HARDWARE\SPI;.\HARDWARE\TLC2543;.\SYSTEM\timer</IncludePath>
+              <IncludePath>.\CMSIS;.\user;.\driver\inc;.\SYSTEM\delay;.\SYSTEM\usart;.\SYSTEM\sys;.\HARDWARE\SPI;.\HARDWARE\TLC2543;.\SYSTEM\timer;.\HARDWARE\A4988;.\HARDWARE\TIMER</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -563,14 +563,19 @@
           <GroupName>HARDWARE</GroupName>
           <Files>
             <File>
-              <FileName>TLC2543.c</FileName>
+              <FileName>A4988.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\HARDWARE\TLC2543\TLC2543.c</FilePath>
+              <FilePath>.\HARDWARE\A4988\A4988.c</FilePath>
             </File>
             <File>
-              <FileName>spi.c</FileName>
+              <FileName>A4988.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\HARDWARE\A4988\A4988.h</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\HARDWARE\SPI\spi.c</FilePath>
+              <FilePath>.\HARDWARE\TIMER\timer.c</FilePath>
             </File>
           </Files>
         </Group>
