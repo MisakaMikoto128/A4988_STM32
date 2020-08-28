@@ -88,10 +88,10 @@ bool setSteppluse(int plusenum)
 	return runpluse_over;
 }
 
-
+/*ms*/
 int setPluseperid(int pluseperid)
 {
-	return pulse_period = pluseperid;
+	return pulse_period = pluseperid <= MIN_PLUS_PERIOD ? MIN_PLUS_PERIOD : pluseperid;;
 }
 
 inline bool getRunplusestatue()

@@ -17,16 +17,17 @@ int main()
 	
 	initA4988();
 
-	int t = 1;
+	int t = 1000;
 	setDirection(CCW);
-
+	setMicrostep(FULL_STEP);
+	
 
 	while(1)
 	{  
-//		setSteppluse(1);
-		oneStep(CW);
-		delay_ms(1000);
-		
+		setSteppluse(100);
+		//oneStep(CW);
+		delay_ms(5000);
+		//setPluseperid(t++);
 //			oneStep(CW);
 		
 		// Spin motor one rotation slowly

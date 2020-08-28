@@ -47,6 +47,7 @@ void setMicrostep(int mode);
 
 /*脉冲周期：ms*/
 #define DEFAULT_PLUS_PERIOD 2
+#define MIN_PLUS_PERIOD 2
 extern int pulse_period;
 //extern const int duty_cycle ;
 /*置于1ms定时器中*/

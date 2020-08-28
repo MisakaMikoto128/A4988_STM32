@@ -40,7 +40,6 @@ void TIM3_IRQHandler(void)   //TIM3中断
 			TIM_ClearITPendingBit(TIM3, TIM_IT_Update);  //清除TIMx更新中断标志 
 			stepPluse();
 					//	STEP_A4988 = !STEP_A4988;
-
 		}
 }
 
